@@ -1,0 +1,28 @@
+<div class="jumbotron text-center">
+   <h1>Welcome to here!</h1>
+
+   <br/><br/>
+
+   
+   <div class="form-horizontal form-group form-group-lg row">
+     <div >
+       {{input type="email" value=model.email class="form-control" placeholder="Please type your e-mail address." autofocus="autofocus"}}
+       <br/>
+     </div>
+     
+     <div >
+       {{textarea class="form-control" placeholder="Your message. (At least 5 characters.)" rows="7" value=model.message}}
+       <br/>
+     </div>
+     <div class = "col-md-3 col-md-offset-8">
+       <button class="btn btn-primary btn-lg btn-block" {{action 'saveContact' model}} disabled={{model.isDisabled}}>Send message</button>
+     </div>
+   </div>
+
+   {{#if responseMessage}}
+     <div class="alert alert-success">{{responseMessage}}</div>
+   {{/if}}
+
+   <br/><br/>
+
+</div>

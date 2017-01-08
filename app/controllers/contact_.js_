@@ -1,0 +1,23 @@
+import Ember from 'ember';
+
+export default Ember.Controller.extend({
+  emailAddress: '',
+
+  isEmailValid: Ember.computed.match('emailAddress', /^.+@.+\..+$/),
+  isMessageValid: Ember.computed.gte('message.length', 5),
+  isValid: Ember.computed.and('isEmailValid', 'isMessageValid'),
+  isDisabled: Ember.computed.not('isValid'),
+
+  actions: {
+    contactUs() {
+      const email = this.get('emailAddress');
+      const message = this.get('message');
+      const newContact = this.store.createRecord('contact', {email: email, message: message});
+      newContact.save().then((response) =>{
+        this.set('responseMessage', `We got your message and we’ll get in touch soon: ${response.get('id')}`);
+        this.set('emailAddress', '');
+        this.set('message', '');
+      });  
+    }
+  }	
+});

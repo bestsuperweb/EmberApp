@@ -1,0 +1,22 @@
+<!-- app/templates/admin/invitations.hbs -->
+
+<h1>Invitations</h1>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>E-mail</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each model as |invitation|}}
+    <tr>
+      <th>{{invitation.id}}</th>
+      <td>{{invitation.email}}</td>
+      <td><button class="btn btn-danger btn-xs" {{action 'deleteInvitation' invitation}}>Delete</button></td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
